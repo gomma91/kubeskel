@@ -1,0 +1,17 @@
+# crea un servizio di tipo ClusterIp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: [labels-app] 
+  name: [app]
+  namespace: [namespace-app]
+spec:
+  type: ClusterIP
+  ports:
+  - port: [port] 
+    protocol: TCP
+    targetPort: [port] 
+  selector:
+    app: [labels-app] 

@@ -1,0 +1,40 @@
+# Deploy dell'app
+---
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: [app] 
+  namespace: [namespace-app] 
+  labels:
+    app: [labels-app]
+spec:
+  replicas: 1 
+  selector:
+    matchLabels:
+      app: [labels-app]
+  template:
+    metadata:
+      labels:
+        app: [labels-app] 
+    spec:
+      containers:
+        - name: [app] 
+          image: [app:latest] 
+          imagePulllPolicy: Always
+          envFrom:
+          - configMapRef:
+              name: [app-config]
+          resources:
+            requests:
+              cpu: 200m
+              memory: 100Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          volumeMounts:
+            - name: [data]
+              mountPath: /var/lib/mysql         
+      volumes:
+        - name: [data]
+          PersistentVolumeClaim:
+            claimName: [app-data]

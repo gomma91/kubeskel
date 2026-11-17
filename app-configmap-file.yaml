@@ -1,0 +1,15 @@
+# Configurare file di configuraziojne come env
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: [app-config-file]
+  namespace: [namespace-app]
+data:
+  nomefile1: |
+    contenuto del file 
+    anche su più righe
+  nomefile2: |
+    altro file che contiene altre cose/configurazioni
+    anche su più righe
+

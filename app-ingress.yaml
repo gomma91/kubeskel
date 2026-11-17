@@ -1,0 +1,25 @@
+# Crea un ingress con un dominio associato, il dominio deve puntare ad uno degli ip del cluster
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: [app]
+  namespace: [namespace-app]
+  labels:
+    app: [labels-app]
+  annotations:
+    # usa l'entrypoint "web" (HTTP :80) di Traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: [nome dominio]
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: [app] 
+                port:
+                  number: [port]

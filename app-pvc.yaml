@@ -1,0 +1,14 @@
+# Crea un volume persistente da 1GB
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: [app-data]
+  namespace: [namespace-app]
+spec:
+  accessModes:
+    - ReadWriteOnce 
+  storageClassName: local-path 
+  resources:
+    requests:
+      storage: [1Gi] 
